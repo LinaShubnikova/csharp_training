@@ -12,18 +12,16 @@ namespace webAddressbookTests
 {
     public class TestBase
     {
-        protected IWebDriver driver;
-        private StringBuilder verificationErrors;
-        protected string baseURL;
-        protected bool acceptNextAlert = true;
 
-        protected LoginHelper loginHelper;
-        protected NavigationHelper navigator;
-        protected GroupHelper groupHelper;
+        protected ApplicationManager app;
 
         [SetUp]
         public void SetupTest()
         {
+            app = new ApplicationManager();
+
+            // переносимые строки метода ниже
+
             FirefoxOptions options = new FirefoxOptions();
             options.UseLegacyImplementation = true;
             options.BrowserExecutableLocation = @"D:\firefox\firefox 52\firefox.exe";
@@ -39,15 +37,7 @@ namespace webAddressbookTests
         [TearDown]
         public void TeardownTest()
         {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
+            app.Stop();
         }
 
         protected void GoToUserCreationPage()

@@ -13,8 +13,8 @@ namespace webAddressbookTests
         [Test]
         public void UserpCreationTest()
         {
-            navigator.OpenHomePage();
-            loginHelper.Login(new AccountData("admin", "secret"));
+            app.Navigator.OpenHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
             GoToUserCreationPage();
             FullUserForm(new UserData("Maria", "Sheveleva"));
             SubmitUserCreation();

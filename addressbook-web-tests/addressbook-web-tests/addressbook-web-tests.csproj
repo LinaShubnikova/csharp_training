@@ -58,29 +58,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountData.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="GroupData.cs" />
-    <Compile Include="GroupHelper.cs" />
-    <Compile Include="GroupRemovalTest.cs" />
-    <Compile Include="HelperBase.cs" />
-    <Compile Include="LoginHelper.cs" />
-    <Compile Include="NavigationHelper.cs" />
-    <Compile Include="Square.cs" />
-    <Compile Include="GroupCreationsTests.cs" />
+    <Compile Include="Model\AccountData.cs" />
+    <Compile Include="AppManager\ApplicationManager.cs" />
+    <Compile Include="Figures\Circle.cs" />
+    <Compile Include="Figures\Figure.cs" />
+    <Compile Include="Model\GroupData.cs" />
+    <Compile Include="AppManager\GroupHelper.cs" />
+    <Compile Include="Tests\GroupRemovalTest.cs" />
+    <Compile Include="AppManager\HelperBase.cs" />
+    <Compile Include="AppManager\LoginHelper.cs" />
+    <Compile Include="AppManager\NavigationHelper.cs" />
+    <Compile Include="Figures\Square.cs" />
+    <Compile Include="Tests\GroupCreationsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestBase.cs" />
-    <Compile Include="UnitTest1.cs" />
-    <Compile Include="UserCreationTest.cs" />
-    <Compile Include="UserData.cs" />
+    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Figures\UnitTest1.cs" />
+    <Compile Include="Tests\UserCreationTest.cs" />
+    <Compile Include="Model\UserData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="GenericTest1.GenericTest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
