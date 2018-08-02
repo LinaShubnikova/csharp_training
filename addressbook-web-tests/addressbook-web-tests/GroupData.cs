@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace webAddressbookTests
 {
-    class GroupData
+    public class GroupData
     {
         private string name;
         private string header = ""; //поле хедер с пустым значением
