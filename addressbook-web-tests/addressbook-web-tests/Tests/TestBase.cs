@@ -48,7 +48,7 @@ namespace webAddressbookTests
         //    driver.FindElement(By.LinkText("add new")).Click();
         //}
 
-        //protected void FullUserForm(UserData user)
+        //protected void FullUserForm(ContactData user)
         //{
         //    driver.FindElement(By.Name("firstname")).Clear();
         //    driver.FindElement(By.Name("firstname")).SendKeys(user.Firstname);
