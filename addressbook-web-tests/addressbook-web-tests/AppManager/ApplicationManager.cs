@@ -20,12 +20,34 @@ namespace webAddressbookTests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
+        protected UserHelper userHelper;
 
         public ApplicationManager()
         {
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
+        
+            FirefoxOptions options = new FirefoxOptions();
+            options.UseLegacyImplementation = true;
+            options.BrowserExecutableLocation = @"D:\firefox\firefox 52\firefox.exe";
+            driver = new FirefoxDriver(options);
+            baseURL = "http://localhost/";
+            verificationErrors = new StringBuilder();
+
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            userHelper = new UserHelper(this);
+
+            //loginHelper = new LoginHelper(driver);
+            //navigator = new NavigationHelper(driver, baseURL);
+            //groupHelper = new GroupHelper(driver);
+        }
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
         }
 
         public void Stop()
@@ -63,6 +85,14 @@ namespace webAddressbookTests
             get
             {
                 return groupHelper;
+            }
+        }
+
+        public UserHelper User
+        {
+            get
+            {
+                return userHelper;
             }
         }
     }

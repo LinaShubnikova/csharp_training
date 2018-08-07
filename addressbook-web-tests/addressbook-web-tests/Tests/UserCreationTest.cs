@@ -13,12 +13,16 @@ namespace webAddressbookTests
         [Test]
         public void UserpCreationTest()
         {
-            app.Navigator.OpenHomePage();
+            UserData user = new UserData("Maria", "Sheveleva");
+            app.User.Create(user);
+
+            /*app.Navigator.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
             GoToUserCreationPage();
             FullUserForm(new UserData("Maria", "Sheveleva"));
             SubmitUserCreation();
             LogOut();
+            */
         }
     }
 }
