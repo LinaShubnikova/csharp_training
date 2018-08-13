@@ -10,9 +10,9 @@ namespace webAddressbookTests
     {
         private string firstname;
         private string lastname;
-        private string middlename = "";
-        private string nickname = "";
-        private string title = "";
+        private string middlename;
+        private string nickname;
+        /*private string title = "";
         private string company = "";
         private string address = "";
         private string home = "";
@@ -23,12 +23,14 @@ namespace webAddressbookTests
         private string email1 = "";
         private string email2 = "";
         private string homepage = "";
-        private string notes = "";
+        private string notes = "";*/
 
-        public ContactData(string firstname, string lastname)
+        public ContactData(string firstname, string lastname, string middlename, string nickname)
         {
             this.firstname = firstname;
             this.lastname = lastname;
+            this.middlename = middlename;
+            this.nickname = nickname;
         }
 
         public string Firstname
@@ -52,6 +54,30 @@ namespace webAddressbookTests
             set
             {
                 lastname = value;
+            }
+        }
+
+        public string Middlename
+        {
+            get
+            {
+                return middlename;
+            }
+            set
+            {
+                middlename = value;
+            }
+        }
+
+        public string Nickname
+        {
+            get
+            {
+                return nickname;
+            }
+            set
+            {
+                nickname = value;
             }
         }
 
