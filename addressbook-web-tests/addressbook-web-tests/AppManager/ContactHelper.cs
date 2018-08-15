@@ -56,7 +56,8 @@ namespace webAddressbookTests
        
         public ContactHelper PicUpContact()
         {
-            driver.FindElement(By.Id("10")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
+            //driver.FindElement(By.Id("10")).Click();
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
             return this;
