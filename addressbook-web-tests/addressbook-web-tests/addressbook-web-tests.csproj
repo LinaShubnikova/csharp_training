@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="NSelene, Version=0.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSelene.0.0.0.7\lib\net45\NSelene.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -58,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\AuthTestBase.cs" />
     <Compile Include="Tests\ContactModifierTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
@@ -74,12 +78,12 @@
     <Compile Include="Figures\Square.cs" />
     <Compile Include="Tests\GroupCreationsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Figures\UnitTest1.cs" />
     <Compile Include="Tests\ContactCreationTest.cs" />
     <Compile Include="Model\ContactData.cs" />
     <Compile Include="AppManager\ContactHelper.cs" />
-    <Compile Include="Tests\TestSuiteFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

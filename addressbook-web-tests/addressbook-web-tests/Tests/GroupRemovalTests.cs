@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace webAddressbookTests
 {
     [TestFixture]
-    public class GroupRemovalTests : TestBase
+    public class GroupRemovalTests : AuthTestBase //TestBase
     {
 
         [Test]

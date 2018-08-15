@@ -7,15 +7,12 @@ using NUnit.Framework;
 
 namespace webAddressbookTests
 {
-    [TestFixture]
-
-    public class ContactRemovalTests : AuthTestBase //TestBase
+    public class AuthTestBase : TestBase
     {
-        [Test]
-        public void ContactRemovalTest()
+        [SetUp]
+        public void SetupLogin()
         {
-            app.User.PicUpContact();
+            app.Auth.Login(new AccountData("admin", "secret"));
         }
-            
     }
 }
