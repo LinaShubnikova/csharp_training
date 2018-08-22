@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace webAddressbookTests
 {
-    public class GroupData
+    public class GroupData : IEquatable<GroupData>
     {
         private string name;
         private string header = ""; //поле хедер с пустым значением
@@ -15,6 +15,24 @@ namespace webAddressbookTests
         public GroupData(string name)
         {
             this.name = name;
+        }
+
+        public bool Equals(GroupData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Name == other.Name;
+        }
+
+        public int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
 
         //public GroupData(string name, string header, string footer)
