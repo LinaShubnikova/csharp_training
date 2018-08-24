@@ -40,5 +40,10 @@ namespace webAddressbookTests
         {
             driver.FindElement(By.LinkText("add new")).Click();
         }
+
+        public void GoToHomePage()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+        }
     }
 }

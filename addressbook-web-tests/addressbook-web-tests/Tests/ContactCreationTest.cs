@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Threading;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace webAddressbookTests
 {
@@ -13,8 +19,19 @@ namespace webAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("Maria", "Sheveleva", "", "");
+            ContactData contact = new ContactData("Maria", "Sheveleva");
+
+            List<ContactData> oldContacts = app.User.GetContactList();
+
             app.User.Create(contact);
+
+            List<ContactData> newContacts = app.User.GetContactList();
+            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
+
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
 
             /*app.Navigator.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));

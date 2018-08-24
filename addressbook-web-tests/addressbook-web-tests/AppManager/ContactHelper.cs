@@ -31,7 +31,7 @@ namespace webAddressbookTests
             //driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
             return this;
         }
-        
+
         public ContactHelper Create(ContactData contact)
         {
             manager.Navigator.GoToUserCreationPage();
@@ -78,7 +78,35 @@ namespace webAddressbookTests
             return this;
         }
 
-     
+        public List<ContactData> GetContactList()
+        {
+            //List<ContactData> contacts = new List<ContactData>();
+            //manager.Navigator.GoToHomePage();
+            //ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.center"));
+            //foreach (IWebElement element in elements)
+            //{
+            //    contacts.Add(new ContactData(element.Text));
+            //}
+
+            //return contacts;
+
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+            int row = 0;
+            foreach (IWebElement element in elements)
+            {
+                if (row > 0)
+                {
+                    string first = element.FindElement(By.XPath("td[3]")).Text;
+                    string second = element.FindElement(By.XPath("td[2]")).Text;
+                    contacts.Add(new ContactData(first, second));
+                }
+                row++;
+            }
+            return contacts;
+        }
+
 
     }
 }

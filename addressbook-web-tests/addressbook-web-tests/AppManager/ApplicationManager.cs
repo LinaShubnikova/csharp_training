@@ -109,5 +109,7 @@ namespace webAddressbookTests
                 return userHelper;
             }
         }
+
+        //public object Contacts { get; internal set; }
     }
 }
