@@ -15,9 +15,13 @@ namespace webAddressbookTests
         public void ContactRemovalTest()
         {
             //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<ContactData> oldContacts = app.User.GetContactList();
 
             app.User.PicUpContact();
 
+            List<ContactData> newContacts = app.User.GetContactList();
+            oldContacts.RemoveAt(0);
+            Assert.AreEqual(oldContacts, newContacts);
             //List<GroupData> newGroups = app.Groups.GetGroupList();
 
             //oldGroups.RemoveAt(0);

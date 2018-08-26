@@ -37,7 +37,7 @@ namespace webAddressbookTests
             manager.Navigator.GoToUserCreationPage();
             FullUserForm(contact);
             SubmitUserCreation();
-            LogOut();
+            //LogOut();
             //driver.FindElement(By.Name("submit")).Click();
             return this;
         }
