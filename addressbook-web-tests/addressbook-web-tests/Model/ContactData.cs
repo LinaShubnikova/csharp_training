@@ -67,7 +67,7 @@ private string notes = "";*/
 
         public override string ToString()
         {
-            return "firstname=" + Firstname + " " + "secondname=" + Lastname;
+            return "firstname=" + Firstname + " " + "lastname=" + Lastname;
         }
 
         public override int GetHashCode()
