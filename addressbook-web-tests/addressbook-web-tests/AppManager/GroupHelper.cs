@@ -50,8 +50,20 @@ namespace webAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
-                    groupCache.Add(new GroupData(element.Text));
+                    groupCache.Add(new GroupData(null) {
+                        //groupCache.Add(new GroupData(element.Text));
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value"),
+                        Name = element.Text
+                    });
                 }
+                /*
+                string allGroupNames = driver.FindElement(By.CssSelector("div#content form")).Text;
+                string[] parts = allGroupNames.Split('\n');
+                for (int i = 0; i < groupCache.Count; i++)
+                {
+                    groupCache[1].Name = parts[i].Trim();
+                }*/
+
             }
             /*List<GroupData> groups = new List<GroupData>();
             manager.Navigator.GoToGroupsPage();

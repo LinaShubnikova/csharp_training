@@ -18,24 +18,23 @@ namespace webAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-
-            GroupData group = new GroupData("aaa");
-            group.Header = "ddd";
-            group.Footer = "fff";
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
+            GroupData group = new GroupData("qwer");
+            group.Header = "qw";
+            group.Footer = "er";
             app.Groups.Create(group);
 
-            //int count = app.Groups.GetGroupCount(); // берем количество групп
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount()); // берем количество групп после добавления и сравниваем с кол-вом до добавления
-
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            //int count = app.Groups.GetGroupCount(); // берем количество групп
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count); // берем количество групп после добавления и сравниваем с кол-вом до добавления
+            //Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupCount());
+
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            //Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
             Assert.AreEqual(oldGroups, newGroups );
-
         }
 
         [Test]

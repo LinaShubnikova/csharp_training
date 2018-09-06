@@ -8,13 +8,14 @@ namespace webAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        private string name;
+        //private string name;
         private string header = ""; //поле хедер с пустым значением
         private string footer = "";
 
         public GroupData(string name)
         {
-            this.name = name;
+            //this.name = name;
+            Name = name;
         }
 
         public bool Equals(GroupData other)
@@ -28,6 +29,7 @@ namespace webAddressbookTests
                 return true;
             }
             return Name == other.Name;
+            //return Name.Equals(other.Name, StringComparison.Ordinal);
         }
 
         public override int GetHashCode()
@@ -56,8 +58,8 @@ namespace webAddressbookTests
         //    this.footer = footer;
         //}
 
-        public string Name
-        {
+        public string Name { get; set; }
+        /*{
             get
             {
                 return name;
@@ -66,10 +68,10 @@ namespace webAddressbookTests
             {
                 name = value;
             }
-        }
+        }*/
 
-        public string Header
-        {
+        public string Header { get; set; }
+        /*{
             get
             {
                 return header;
@@ -78,10 +80,10 @@ namespace webAddressbookTests
             {
                 header = value;
             }
-        }
+        }*/
 
-        public string Footer
-        {
+        public string Footer { get; set; }
+        /*{
             get
             {
                 return footer;
@@ -90,6 +92,8 @@ namespace webAddressbookTests
             {
                 footer = value;
             }
-        }
+        }*/
+
+        public string Id { get; set; }
     }
 }
