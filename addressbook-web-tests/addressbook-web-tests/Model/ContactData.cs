@@ -12,6 +12,12 @@ namespace webAddressbookTests
         private string lastname;
         private string middlename;
         private string nickname;
+        private string address;
+        private string allPhones;
+        private string allEmail;
+        private string homePhone;
+        private string mobilePhone;
+        private string workPhone;
 
         //public ContactData(string text)
         //{
@@ -32,11 +38,25 @@ private string notes = "";*/
 
         public ContactData(string firstname, string lastname)
         {
-            this.firstname = firstname;
-            this.lastname = lastname;
-            //this.middlename = middlename;
-            //this.nickname = nickname;
-        }
+            Firstname = firstname;
+            Lastname = lastname;
+            Address = address;
+            HomePhone = homePhone;
+            MobilePhone = mobilePhone;
+            WorkPhone = workPhone;
+
+            AllPhones = allPhones;
+            AllEmail = allEmail;
+
+            //Fax = fax;
+            //Email = email;
+            //Email1 = email1;
+            //Email2 = email2;
+            //Homepage = homepage;
+            //Notes = notes;
+        //this.middlename = middlename;
+        //this.nickname = nickname;
+    }
 
         public bool Equals(ContactData other)
         {
@@ -76,29 +96,91 @@ private string notes = "";*/
             return Firstname.GetHashCode() & Lastname.GetHashCode();
         }
 
-        public string Firstname
+        public string Firstname { get; set; }
+        //{
+            //get
+            //{
+            //    return firstname;
+            //}
+            //set
+            //{
+            //    firstname = value;
+            //}
+        //}
+
+        public string Lastname { get; set; }
+        public string Address { get; set; }
+        public string HomePhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string WorkPhone { get; set; }
+
+        public string AllPhones
         {
             get
             {
-                return firstname;
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
+
             }
             set
             {
-                firstname = value;
+                allPhones = value;
             }
         }
 
-        public string Lastname
+        private string CleanUp(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+
+
+        public string AllEmail
         {
             get
             {
-                return lastname;
+                if (allEmail != null)
+                {
+                    return allEmail;
+                }
+                else
+                {
+                    return (CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3)).Trim();
+                }
+
             }
             set
             {
-                lastname = value;
+                allEmail = value;
             }
         }
+
+        private string CleanUpEmail(string email)
+        {
+            if (email == null || email == "")
+            {
+                return "";
+            }
+            return email.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+
+
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public string Email2 { get; set; }
+        public string Email3 { get; set; }
+        public string Homepage { get; set; }
+        public string Notes { get; set; }
+
 
         public string Middlename
         {
