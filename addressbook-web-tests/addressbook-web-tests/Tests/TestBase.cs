@@ -21,5 +21,25 @@ namespace webAddressbookTests
             app = ApplicationManager.GetInstance();
             //app.Auth.Login(new AccountData("admin", "secret"));
         }
+
+        public static Random rnd = new Random();
+
+        public static string GenerateRandomString(int max)
+        {
+            //Random rnd = new Random();
+            // формируем строку из числа умноженного на max
+            int l = Convert.ToInt32(rnd.NextDouble() * max);
+            // формируем строку из букв
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < l; i++)
+            {
+                // формируем число в диапазоне от 0 до 1 rnd.NextDouble, умножаем на 223, 
+                // прибавляем 32, так как ASCII и символы меньше не печатные
+                // округляем и конвертируем в число Convert.ToInt32
+                // округляем и конвертируем в символ Convert.ToChar
+                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 223)));
+            }
+            return builder.ToString();
+        }
     }
 }
