@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace webAddressbookTests
 {
@@ -18,6 +19,8 @@ namespace webAddressbookTests
         private string homePhone;
         private string mobilePhone;
         private string workPhone;
+        private string allData;
+        //private string fax;
 
         //public ContactData(string text)
         //{
@@ -47,6 +50,7 @@ private string notes = "";*/
 
             AllPhones = allPhones;
             AllEmail = allEmail;
+            AllData = allData;
 
             //Fax = fax;
             //Email = email;
@@ -54,9 +58,9 @@ private string notes = "";*/
             //Email2 = email2;
             //Homepage = homepage;
             //Notes = notes;
-        //this.middlename = middlename;
-        //this.nickname = nickname;
-    }
+            //this.middlename = middlename;
+            //this.nickname = nickname;
+        }
 
         public bool Equals(ContactData other)
         {
@@ -134,13 +138,43 @@ private string notes = "";*/
             }
         }
 
+        public string AllData
+        {
+            get
+            {
+                if (allData != null)
+                {
+                    return allData;
+                }
+                else
+                {
+                    return (Firstname + " " + Lastname + "\r\n" + Address + "\r\n"
+                        + "\r\n"
+                        + "H: " + HomePhone + "\r\n"
+                        + "M: " + MobilePhone + "\r\n"
+                        + "W: " + WorkPhone + "\r\n"
+                        //+ "W: " + Fax + "\r\n"
+                        + "\r\n"
+                        + Email + "\r\n"
+                        + Email2 + "\r\n"
+                        + Email3);
+                }
+
+            }
+            set
+            {
+                allData = value;
+            }
+        }
+
         private string CleanUp(string phone)
         {
             if (phone == null || phone == "")
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
         }
 
 
@@ -170,7 +204,8 @@ private string notes = "";*/
             {
                 return "";
             }
-            return email.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(email, "[ ]", "") + "\r\n";
+            //return email.Replace(" ", "") + "\r\n";
         }
 
 

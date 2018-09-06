@@ -30,5 +30,16 @@ namespace webAddressbookTests
             Assert.AreEqual(fromTable.AllEmail, fromForm.AllEmail);
         }
 
+        [Test]
+
+        public void TestContactDetailInformation()
+        {
+            // информация о контакте с страницы после нажатия кнопки с человечком для контакта с индексом 0
+            string detailInformation = app.User.GetContactDetailInformationFromTable(0);
+            // информация о контакте со страницы заполнения формы контакта с индексом 0
+            ContactData fromDetailForm = app.User.GetContactInformationFromEditForm(0);
+
+            Assert.AreEqual(detailInformation, fromDetailForm.AllData);
+        }
     }
 }

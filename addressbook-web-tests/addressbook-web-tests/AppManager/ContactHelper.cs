@@ -8,6 +8,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 namespace webAddressbookTests
 {
@@ -40,6 +41,27 @@ namespace webAddressbookTests
             //Type(By.Name("homepage"), contact.Homepage);
             //Type(By.Name("notes"), contact.Notes);
             return this;
+        }
+
+        /*internal ContactData GetContactDetailInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModificationLic(0);
+            return new ContactData(firstName, lastName)
+            {
+                AllData = allData,
+            };
+        }*/
+
+        public string GetContactDetailInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModificationLic2(0);
+            return driver.FindElement(By.Id("content")).Text;
+            //return new ContactData(firstName, lastName)
+            //{
+            //    AllData = allData,
+            //};
         }
 
         // информация о контакте со страницы заполнения формы контакта
@@ -96,6 +118,13 @@ namespace webAddressbookTests
                 AllEmail = allEmail,
 
             };
+        }
+
+        public void InitContactModificationLic2(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
         }
 
         public void InitContactModificationLic(int index)
@@ -247,6 +276,18 @@ namespace webAddressbookTests
             //driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
             driver.FindElement(By.Name("update")).Click();
             return this;
+        }
+
+        // метод взятия количества контактов
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            // берем строку, в которой содержится количество контактов на странице
+            string text =  driver.FindElement(By.TagName("label")).Text;
+            // извлекаем из нее число
+            Match m = new Regex(@"\d+").Match(text);
+            // преобразуем в число
+            return Int32.Parse(m.Value);
         }
 
         /*public List<ContactData> GetContactList()
