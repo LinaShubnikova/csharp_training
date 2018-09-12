@@ -10,6 +10,8 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 
 namespace webAddressbookTests
@@ -83,6 +85,12 @@ namespace webAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups );
+        }
+
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<GroupData>>(
+                File.ReadAllText(@"groups.json"));
         }
 
         /*[Test]

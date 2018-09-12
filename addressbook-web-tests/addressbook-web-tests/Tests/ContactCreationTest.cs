@@ -9,6 +9,11 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace webAddressbookTests
 {
@@ -26,8 +31,9 @@ namespace webAddressbookTests
         }
 
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
-        public void ContactCreationTest(ContactData contact)
+        
+        //[Test, TestCaseSource("RandomContactDataProvider")]
+       /* public void ContactCreationTest(ContactData contact)
         {
             //ContactData contact = new ContactData("Maria", "Sheveleva");
 
@@ -44,7 +50,7 @@ namespace webAddressbookTests
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
-
+            */
             /*app.Navigator.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
             GoToUserCreationPage();
@@ -52,6 +58,25 @@ namespace webAddressbookTests
             SubmitUserCreation();
             LogOut();
             */
+        
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
+        public void ContactCreationTest(ContactData contact)
+        {
+            List<ContactData> oldContacts = app.User.GetContactList();
+            app.User.Create(contact);
         }
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(
+                File.ReadAllText(@"contacts.json"));
+        }
+
+    public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            return (List<ContactData>)new XmlSerializer(typeof(List<ContactData>))
+                .Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
     }
 }

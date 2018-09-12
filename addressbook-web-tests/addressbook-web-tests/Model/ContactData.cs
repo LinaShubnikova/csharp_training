@@ -39,6 +39,10 @@ private string email2 = "";
 private string homepage = "";
 private string notes = "";*/
 
+        public ContactData()
+        {
+        }
+
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
