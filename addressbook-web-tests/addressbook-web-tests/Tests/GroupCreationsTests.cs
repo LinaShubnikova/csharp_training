@@ -8,12 +8,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace webAddressbookTests
 {
     [TestFixture]
     public class GroupCreationTests : AuthTestBase // TestBase
     {
+        // генерируем файлы генератором
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
             List<GroupData> groups = new List<GroupData>();
@@ -29,9 +33,37 @@ namespace webAddressbookTests
             return groups;
         }
         
+        // читаем из файла данные для заполнения полей групп
+        public static IEnumerable<GroupData> GroupDataFromCsvFile()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            // "список" одной строкой
+            string[] lines = File.ReadAllLines(@"groups.csv");
+            foreach (string l in lines)
+            {
+                // список, разделенный по запятой
+                string[] parts = l.Split(',');
+                groups.Add(new GroupData(parts[0])
+                {
+                    Header = parts[1],
+                    Footer = parts[2]
+                });
+            }
+            return groups;
+        }
 
+        // читаем из файла данные для заполнения полей групп
+        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        {
+            //List<GroupData> groups = new List<GroupData>();
+            // приводим к типу (List<GroupData>) 
+            return (List<GroupData>) 
+                new XmlSerializer(typeof(List<GroupData>))
+                .Deserialize(new StreamReader(@"groups.xml"));
+        }
 
-        [Test, TestCaseSource("RandomGroupDataProvider")]
+        [Test, TestCaseSource("GroupDataFromXmlFile")]
+        //[Test, TestCaseSource("RandomGroupDataProvider")]
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();

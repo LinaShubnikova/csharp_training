@@ -29,6 +29,7 @@ namespace webAddressbookTests
             //Random rnd = new Random();
             // формируем строку из числа умноженного на max
             int l = Convert.ToInt32(rnd.NextDouble() * max);
+            
             // формируем строку из букв
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < l; i++)
@@ -37,7 +38,7 @@ namespace webAddressbookTests
                 // прибавляем 32, так как ASCII и символы меньше не печатные
                 // округляем и конвертируем в число Convert.ToInt32
                 // округляем и конвертируем в символ Convert.ToChar
-                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 223)));
+                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 65)));
             }
             return builder.ToString();
         }

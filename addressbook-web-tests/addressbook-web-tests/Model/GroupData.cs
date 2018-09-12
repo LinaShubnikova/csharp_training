@@ -12,6 +12,10 @@ namespace webAddressbookTests
         private string header = ""; //поле хедер с пустым значением
         private string footer = "";
 
+        public GroupData()
+        {
+        }
+
         public GroupData(string name)
         {
             //this.name = name;
