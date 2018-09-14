@@ -161,6 +161,10 @@ namespace webAddressbookTests
         public ContactHelper ContactDelete(int l)
         {
             manager.Navigator.GoToHomePage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new ContactData("tt", "zz"));
+            }
             SelectContact(l);
             PicUpContact();
             //DriverAlert();
@@ -214,6 +218,10 @@ namespace webAddressbookTests
         public ContactHelper ModifierContact(int p, ContactData contact)
         {
             manager.Navigator.GoToHomePage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new ContactData("tt", "zz"));
+            }
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("nickname"), contact.Nickname);

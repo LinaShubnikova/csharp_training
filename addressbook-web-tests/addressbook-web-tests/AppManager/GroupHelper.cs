@@ -172,5 +172,15 @@ namespace webAddressbookTests
             return this;
         }
 
+        public GroupHelper IfNoGroupsCreateGroup()
+        {
+            manager.Navigator.GoToGroupsPage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new GroupData("wwww"));
+            }
+            return this;
+        }
+
     }
 }
