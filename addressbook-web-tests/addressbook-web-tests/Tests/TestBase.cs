@@ -12,6 +12,8 @@ namespace webAddressbookTests
 {
     public class TestBase
     {
+        // определяем выполнять длинную проверку списков или нет
+        public static bool PERFORM_LONG_UI_CHECKS = true;
 
         protected ApplicationManager app;
 

@@ -18,7 +18,7 @@ using System.IO;
 namespace webAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase // TestBase
+    public class GroupCreationTests : GroupTestBase //AuthTestBase // TestBase
     {
         // генерируем файлы генератором
         public static IEnumerable<GroupData> RandomGroupDataProvider()
@@ -69,14 +69,16 @@ namespace webAddressbookTests
         //[Test, TestCaseSource("RandomGroupDataProvider")]
         public void GroupCreationTest(GroupData group)
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             //GroupData group = new GroupData("qwer");
             //group.Header = "qw";
             //group.Footer = "er";
             app.Groups.Create(group);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            //List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
             //int count = app.Groups.GetGroupCount(); // берем количество групп
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count); // берем количество групп после добавления и сравниваем с кол-вом до добавления
