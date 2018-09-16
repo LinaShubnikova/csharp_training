@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using LinqToDB.Mapping;
 
 namespace webAddressbookTests
 {
+    [Table (Name = "addressbook")]
     public class ContactData: IEquatable<ContactData>, IComparable<ContactData>
     {
         //private string firstname;
@@ -104,18 +106,23 @@ private string notes = "";*/
             return Firstname.GetHashCode() & Lastname.GetHashCode();
         }
 
+        [Column(Name = "id"), PrimaryKey]
+        public string Id { get; set; }
+
+        [Column(Name = "firstname")]
         public string Firstname { get; set; }
         //{
-            //get
-            //{
-            //    return firstname;
-            //}
-            //set
-            //{
-            //    firstname = value;
-            //}
+        //get
+        //{
+        //    return firstname;
+        //}
+        //set
+        //{
+        //    firstname = value;
+        //}
         //}
 
+        [Column(Name = "lastname")]
         public string Lastname { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }

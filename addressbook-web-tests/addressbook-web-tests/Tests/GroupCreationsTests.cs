@@ -139,7 +139,7 @@ namespace webAddressbookTests
         }
 
         // подключение к БД и взятие списка групп из таблицы
-        [Test]
+        /*[Test]
         public void TestDBConnectivity()
         {
             DateTime start = DateTime.Now;
@@ -158,9 +158,20 @@ namespace webAddressbookTests
             //AddressbookDB db = new AddressbookDB();
             //List<GroupData> fromDB = (from g in db.Groups select g).ToList();
             //db.Close();
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
 
+            //end = DateTime.Now;
+            //System.Console.Out.WriteLine(end.Subtract(start));
+
+        //}*/
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+            // извлекли все группы, из них берем нулевую и извлекаем у этой группы все контакты
+            foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact);
+            }
         }
     }
 }
