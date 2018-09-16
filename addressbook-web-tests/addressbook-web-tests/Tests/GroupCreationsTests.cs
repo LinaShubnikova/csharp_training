@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
@@ -132,6 +133,31 @@ namespace webAddressbookTests
             newGroups.Sort();
             //Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
             Assert.AreEqual(oldGroups, newGroups);
+
+        }
+
+        // подключение к БД и взятие списка групп из таблицы
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+
+            List<GroupData> fromUI = app.Groups.GetGroupList();
+
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> fromDB = GroupData.GetAll();
+            /*using (AddressbookDB db = new AddressbookDB())
+            {
+                List<GroupData> fromDB = (from g in db.Groups select g).ToList();
+            }*/
+            //AddressbookDB db = new AddressbookDB();
+            //List<GroupData> fromDB = (from g in db.Groups select g).ToList();
+            //db.Close();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
 
         }
     }
