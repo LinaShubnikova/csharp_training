@@ -83,16 +83,20 @@ private string notes = "";*/
 
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            // Если объекта не существует, то 1
+            if (other is null)
             {
                 return 1;
             }
-            if (Object.ReferenceEquals(this.Lastname, other.Lastname) == true)
-            {
-                return Firstname.CompareTo(other.Firstname);
-            }
-            return Lastname.CompareTo(other.Lastname);
-            //return Firstname.CompareTo(other.Firstname) & Secondname.CompareTo(other.Secondname);
+            //else if(this.Firstname == other.Firstname)
+            //{
+            // Если совпали имена, то сравниваем фамилии (0 если полностью совпали)
+            //    return Lastname.CompareTo(other.Lastname);
+            //}
+            //return Firstname.CompareTo(other.Firstname);
+            string firstnameLastname = Firstname + Lastname;
+            string otherFirstnameLastname = other.Firstname + other.Lastname;
+            return firstnameLastname.CompareTo(otherFirstnameLastname);
         }
 
         public override string ToString()

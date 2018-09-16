@@ -50,7 +50,8 @@ namespace webAddressbookTests
 
         public int CompareTo(GroupData other)
         {
-            if (Object.ReferenceEquals(other, null)) // если равны, то вернуть единицу
+            // Если объекта не существует, то 1
+            if (other is null)
             {
                 return 1;
             }
