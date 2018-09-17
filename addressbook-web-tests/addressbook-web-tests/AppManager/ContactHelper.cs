@@ -51,15 +51,42 @@ namespace webAddressbookTests
             };
         }*/
 
-        public string GetContactDetailInformationFromTable(int index)
+        //public string GetContactDetailInformationFromTable(int index)
+        internal ContactData GetContactDetailInformationFromTable(int index)
         {
             manager.Navigator.GoToHomePage();
             InitContactModificationLic2(0);
-            return driver.FindElement(By.Id("content")).Text;
+            IWebElement div = driver.FindElements(By.Id("content"))[0];
+            string divText = div.Text;
+            List<string> lines = divText.Split(new string[] { "\r\n" }, StringSplitOptions.None).ToList();
+            //return driver.FindElement(By.Id("content")).Text;
+
             //return new ContactData(firstName, lastName)
             //{
             //    AllData = allData,
             //};
+            string allName = lines[0];
+            string address = lines[1];
+            string homeFoneWithPrefix = lines[3];
+            string mobileFoneWithPrefix = lines[4];
+            string workFoneWithPrefix = lines[5];
+            string faxFoneWithPrefix = lines[6];
+            string email = lines[8];
+            string email2 = lines[9];
+            string email3 = lines[10];
+
+            return new ContactData(allName)
+            {
+                AllName = allName,
+                Address = address,
+                HomePhoneWithPrefix = homeFoneWithPrefix,
+                MobilePhoneWithPrefix = mobileFoneWithPrefix,
+                WorkPhoneWithPrefix = workFoneWithPrefix,
+                FaxFoneWithPrefix = faxFoneWithPrefix,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
         }
 
         // информация о контакте со страницы заполнения формы контакта
@@ -75,7 +102,7 @@ namespace webAddressbookTests
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
 
-            //string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
+            string fax = driver.FindElement(By.Name("fax")).GetAttribute("value");
             string email = driver.FindElement(By.Name("email")).GetAttribute("value");
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
@@ -88,7 +115,7 @@ namespace webAddressbookTests
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone,
-                //Fax = fax,
+                Fax = fax,
                 Email = email,
                 Email2 = email2,
                 Email3 = email3,
@@ -361,9 +388,5 @@ namespace webAddressbookTests
         {
             driver.FindElement(By.Name("add")).Click();
         }
-
-        
-
-        
     }
 }

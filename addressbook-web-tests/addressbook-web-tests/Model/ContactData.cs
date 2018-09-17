@@ -22,6 +22,11 @@ namespace webAddressbookTests
         private string mobilePhone;
         private string workPhone;
         private string allData;
+        private string allName;
+        private string homePhoneWithPrefix;
+        private string mobileFoneWithPrefix;
+        private string workFoneWithPrefix;
+        private string faxFoneWithPrefix;
         //private string fax;
 
         //public ContactData(string text)
@@ -41,7 +46,7 @@ private string email2 = "";
 private string homepage = "";
 private string notes = "";*/
 
-        public ContactData()
+        public ContactData(string allName)
         {
         }
 
@@ -56,7 +61,8 @@ private string notes = "";*/
 
             AllPhones = allPhones;
             AllEmail = allEmail;
-            AllData = allData;
+            //AllData = allData;
+            AllName = allName;
 
             //Fax = fax;
             //Email = email;
@@ -153,7 +159,7 @@ private string notes = "";*/
             }
         }
 
-        public string AllData
+        /*public string AllData
         {
             get
             {
@@ -180,7 +186,7 @@ private string notes = "";*/
             {
                 allData = value;
             }
-        }
+        }*/
 
         private string CleanUp(string phone)
         {
@@ -263,6 +269,98 @@ private string notes = "";*/
             using (AddressbookDB db = new AddressbookDB())
             {
                 return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
+        }
+
+        public string HomePhoneWithPrefix
+        {
+            get
+            {
+                if (homePhoneWithPrefix != null)
+                {
+                    return homePhoneWithPrefix;
+                }
+                else
+                {
+                    return ("H:" + " " + (HomePhone));
+                }
+            }
+            set
+            {
+                homePhoneWithPrefix = value;
+            }
+        }
+        public string MobilePhoneWithPrefix
+        {
+            get
+            {
+                if (mobileFoneWithPrefix != null)
+                {
+                    return mobileFoneWithPrefix;
+                }
+                else
+                {
+                    return ("M:" + " " + (MobilePhone));
+                }
+            }
+            set
+            {
+                mobileFoneWithPrefix = value;
+            }
+        }
+        public string WorkPhoneWithPrefix
+        {
+            get
+            {
+                if (workFoneWithPrefix != null)
+                {
+                    return workFoneWithPrefix;
+                }
+                else
+                {
+                    return ("W:" + " " + (WorkPhone));
+                }
+            }
+            set
+            {
+                workFoneWithPrefix = value;
+            }
+        }
+        public string FaxFoneWithPrefix
+        {
+            get
+            {
+                if (faxFoneWithPrefix != null)
+                {
+                    return faxFoneWithPrefix;
+                }
+                else
+                {
+                    return ("F:" + " " + (Fax));
+                }
+            }
+            set
+            {
+                faxFoneWithPrefix = value;
+            }
+        }
+
+        public string AllName
+        {
+            get
+            {
+                if (allName != null)
+                {
+                    return allName;
+                }
+                else
+                {
+                    return ((Firstname) + " " + (Lastname));
+                }
+            }
+            set
+            {
+                allName = value;
             }
         }
     }
