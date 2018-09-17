@@ -12,18 +12,12 @@ namespace webAddressbookTests
 
     public class ContactRemovalTests : AuthTestBase //TestBase
     {
-        protected ContactHelper contactHelper;
-
         [Test]
         public void ContactRemovalTest()
         {
             // Переходим на страницу контактов
-            app.Navigator.GoToHomePage();
             // Если нет контактов на странице, то создаем контакт
-            if (!contactHelper.IsElementPresent(By.Name("selected[]")))
-            {
-                contactHelper.Create(new ContactData("tt", "zz"));
-            }
+            app.User.IfNoContactsCreateContact();
 
             //List<GroupData> oldGroups = app.Groups.GetGroupList();
             List<ContactData> oldContacts = app.User.GetContactList();

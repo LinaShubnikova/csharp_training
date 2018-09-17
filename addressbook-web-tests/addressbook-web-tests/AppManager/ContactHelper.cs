@@ -361,5 +361,15 @@ namespace webAddressbookTests
         {
             driver.FindElement(By.Name("add")).Click();
         }
+
+        public ContactHelper IfNoContactsCreateContact()
+        {
+            manager.Navigator.GoToHomePage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new ContactData("tt", "zz"));
+            }
+            return this;
+        }
     }
 }
