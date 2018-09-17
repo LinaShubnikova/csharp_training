@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace webAddressbookTests
 {
@@ -11,9 +12,19 @@ namespace webAddressbookTests
 
     public class ContactRemovalTests : AuthTestBase //TestBase
     {
+        protected ContactHelper contactHelper;
+
         [Test]
         public void ContactRemovalTest()
         {
+            // Переходим на страницу контактов
+            app.Navigator.GoToHomePage();
+            // Если нет контактов на странице, то создаем контакт
+            if (!contactHelper.IsElementPresent(By.Name("selected[]")))
+            {
+                contactHelper.Create(new ContactData("tt", "zz"));
+            }
+
             //List<GroupData> oldGroups = app.Groups.GetGroupList();
             List<ContactData> oldContacts = app.User.GetContactList();
 
