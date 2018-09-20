@@ -296,6 +296,24 @@ namespace webAddressbookTests
             return Int32.Parse(m.Value);
         }
 
+        // метод поиска
+        public int GetNumberOfResults(string searchString)
+        {
+            manager.Navigator.GoToHomePage();
+            driver.FindElement(By.Name("searchstring")).SendKeys(searchString);
+            string text = driver.FindElement(By.Id("search_count")).Text;
+            return Int32.Parse(text);
+        }
+
+        public int GetNumberOfContactsSearch()
+        {
+            int countContacts = GetContactCount();
+            int countHidedContacts = driver.FindElement(By.CssSelector("#maintable")).FindElements(By.CssSelector("tr[style]")).Count;
+            return countContacts - countHidedContacts;
+        }
+
+
+
         /*public List<ContactData> GetContactList()
         {
 

@@ -71,7 +71,7 @@ namespace webAddressbookTests
                 File.ReadAllText(@"contacts.json"));
         }
 
-    public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
         {
             List<ContactData> contacts = new List<ContactData>();
             return (List<ContactData>)new XmlSerializer(typeof(List<ContactData>))

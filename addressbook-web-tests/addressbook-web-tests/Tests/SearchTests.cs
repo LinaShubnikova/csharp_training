@@ -15,7 +15,10 @@ namespace webAddressbookTests
 
         public void TestSearch()
         {
-            System.Console.Out.Write(app.User.GetNumberOfSearchResults());
+            //System.Console.Out.Write(app.User.GetNumberOfSearchResults());
+            int countNumber = app.User.GetNumberOfResults("p");
+            int trNumber = app.User.GetNumberOfContactsSearch();
+            Assert.AreEqual(countNumber, trNumber);
         }
 
     }
