@@ -389,5 +389,37 @@ namespace webAddressbookTests
             }
             return this;
         }
-    }
+
+		public ContactData CreateContact(ContactData contact)
+		{
+			manager.Navigator.GoToHomePage();
+			FullUserForm(contact);
+			SubmitUserCreation();
+			new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+			  .Until(d => d.FindElements(By.CssSelector("table#maintable")).Count > 0);
+			return contact;
+		}
+
+		public void DeleteContactFromGroup(ContactData contact, GroupData group)
+		{
+			manager.Navigator.GoToHomePage();
+			SelectGroupToRemoveContact(group.Name);
+			SelectContact(contact.Id);
+
+			CommitRemoveContactFromGroup();
+
+			new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+				.Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+		}
+
+		private void CommitRemoveContactFromGroup()
+		{
+			driver.FindElement(By.Name("remove")).Click();
+		}
+
+		private void SelectGroupToRemoveContact(string name)
+		{
+			new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name); ;
+		}
+	}
 }

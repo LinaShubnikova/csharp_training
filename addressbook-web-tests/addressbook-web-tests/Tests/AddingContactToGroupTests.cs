@@ -12,13 +12,31 @@ namespace webAddressbookTests
         [Test]
         public void TestAddingContactToGroup()
         {
-            GroupData group = GroupData.GetAll()[0];
+			// Переходим на страницу контактов
+			// Если нет контактов на странице, то создаем контакт
+			app.User.IfNoContactsCreateContact();
+
+			GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts(); 
             // берем список контактов и исключаем из него все контакты группы с индексом [0]
-            ContactData contact =  ContactData.GetAll().Except(oldList).First();
+            // ContactData contact =  ContactData.GetAll().Except(oldList).First();
 
-            // действия
-            app.User.AddContactToGroup(contact, group);
+			List<ContactData> allContacts = ContactData.GetAll();
+			ContactData contact;
+			IEnumerable<ContactData> diff = allContacts.Except(oldList);
+			if (diff.Count() == 0)
+			{
+				ContactData myContact = new ContactData(TestBase.GenerateRandomString(15), "Name");
+				app.User.CreateContact(myContact);
+				contact = ContactData.GetAll().Except(oldList).First();
+			}
+			else
+			{
+				contact = diff.First();
+			}
+
+			// действия
+			app.User.AddContactToGroup(contact, group);
 
             List<ContactData> newList = group.GetContacts();
 
