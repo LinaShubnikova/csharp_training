@@ -39,7 +39,9 @@ namespace webAddressbookTests
             // информация о контакте со страницы заполнения формы контакта с индексом 0
             ContactData fromDetailForm = app.User.GetContactInformationFromEditForm(0);
 
-            Assert.AreEqual(detailInformation, fromDetailForm.AllData);
+			string infoFromEdit = fromDetailForm.AllData;
+
+            Assert.AreEqual(detailInformation, infoFromEdit);
         }
     }
 }

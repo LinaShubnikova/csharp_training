@@ -163,16 +163,71 @@ private string notes = "";*/
                 }
                 else
                 {
-                    return (Firstname + " " + Lastname + "\r\n" + Address + "\r\n"
-                        + "\r\n"
-                        + "H: " + HomePhone + "\r\n"
-                        + "M: " + MobilePhone + "\r\n"
-                        + "W: " + WorkPhone + "\r\n"
-                        //+ "W: " + Fax + "\r\n"
-                        + "\r\n"
-                        + Email + "\r\n"
-                        + Email2 + "\r\n"
-                        + Email3);
+					allData = "";
+
+					if(string.IsNullOrEmpty(Firstname) == false)
+					{
+						allData += Firstname;
+					}
+
+					if (string.IsNullOrEmpty(Lastname) == false)
+					{
+						allData += " " + Lastname + "\r\n";
+					}
+					else
+					{
+						allData += "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(Address) == false)
+					{
+						allData += Address + "\r\n\r\n";
+					}
+					else
+					{
+						allData += "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(HomePhone) == false)
+					{
+						allData += "H: " + HomePhone + "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(MobilePhone) == false)
+					{
+						allData += "M: " + MobilePhone + "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(WorkPhone) == false)
+					{
+						allData += "W: " + WorkPhone + "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(Fax) == false)
+					{
+						allData += "F: " + Fax + "\r\n\r\n";
+					}
+					else
+					{
+						allData += "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(Email) == false)
+					{
+						allData += Email + "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(Email2) == false)
+					{
+						allData += Email2 + "\r\n";
+					}
+
+					if (string.IsNullOrEmpty(Email3) == false)
+					{
+						allData += Email3;
+					}
+
+					return allData;
                 }
 
             }
